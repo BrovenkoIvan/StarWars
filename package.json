@@ -7,19 +7,23 @@
     "ios": "react-native run-ios",
     "start": "react-native start",
     "test": "jest",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "postinstall": "rndebugger-open"
   },
   "dependencies": {
     "@react-native-community/async-storage": "^1.8.1",
     "@react-native-community/masked-view": "^0.1.6",
     "@react-navigation/native": "^5.0.8",
     "axios": "^0.19.2",
-    "react": "16.9.0",
-    "react-native": "0.61.5",
+    "react": "16.11.0",
+    "react-native": "0.62.2",
     "react-native-gesture-handler": "^1.6.0",
     "react-native-reanimated": "^1.7.0",
     "react-native-safe-area-context": "^0.7.3",
+    "react-native-safe-area-view": "^1.1.1",
     "react-native-screens": "^2.1.0",
+    "react-native-swipeout": "^2.3.6",
+    "react-native-vector-icons": "^6.6.0",
     "react-navigation": "^4.2.2",
     "react-navigation-stack": "^2.2.2",
     "react-navigation-tabs": "^2.8.2"
@@ -32,6 +36,7 @@
     "eslint": "6.8.0",
     "jest": "24.9.0",
     "metro-react-native-babel-preset": "0.56.4",
+    "react-native-debugger-open": "^0.3.24",
     "react-test-renderer": "16.9.0"
   },
   "jest": {

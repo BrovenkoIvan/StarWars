@@ -6,16 +6,16 @@ import {
     StyleSheet, 
     FlatList,
     TouchableOpacity,
-    SearchBar
 } from 'react-native'
-import Header from '../components/Header'
-import SearchBar1 from '../components/SearchBar1'
+import SearchBar from '../components/SearchBar'
 
 const ResidentsListScreen = ({ navigation }) => {
     const [term, setTerm] = useState('')
-    const [result, setResult] = useState([])  
+    const [result, setResult] = useState([])
+    const [filteredResident, setFilteredResident] = useState([])
+
     const getResult = async () => {
-        const  residentsURLs  = navigation.getParam('residents', 'no residents')
+        const  residentsURLs  = navigation.getParam('residents')
         const residentsData = residentsURLs.map( async url => {
             const responce = await fetch(url);
             const dataa = await responce.json();
@@ -25,19 +25,27 @@ const ResidentsListScreen = ({ navigation }) => {
             setResult(data);
         })
     }
+    useEffect(()=>{
+        setFilteredResident(
+            result.filter( resident => {
+                return resident.name.toLowerCase().includes( term.toLowerCase() )
+            })
+        )
+    }, [term, result])
+
     useEffect(() => {
         getResult()
     }, [])
-
+    
     return(
         <SafeAreaView>
-             <SearchBar1
+             <SearchBar
                 term={term} 
                 onTermChange={ setTerm }
-                // onTermSubmit={ () => searchApi(term)}
             />
+            {filteredResident.length ? (
              <FlatList
-                data={result}
+                data={filteredResident}
                 keyExtractor={(result) => result.name}
                 renderItem={({ item }) => {
                     return (
@@ -50,6 +58,7 @@ const ResidentsListScreen = ({ navigation }) => {
                     )
                 }}
             />
+            ) : (<Text style={{ fontSize: 28, paddingTop: 10}}>Oops... NO RESULTS</Text>)}
         </SafeAreaView>
     )
 }

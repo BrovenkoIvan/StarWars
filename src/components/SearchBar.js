@@ -1,8 +1,8 @@
 import React from 'react'
-import { View, Text, StyleSheet, TextInput, } from 'react-native'
+import { View, StyleSheet, TextInput, } from 'react-native'
 
 
-const SearchBar1 = ({term, onTermChange, onTermSubmit}) => {
+const SearchBar = ({term, onTermChange, onTermSubmit}) => {
     return(
         <View style={styles.backgroundStyle}>
             <TextInput 
@@ -24,7 +24,6 @@ const styles = StyleSheet.create({
         borderRadius: 5,
         marginHorizontal: 15, 
         flexDirection: 'row',
-        marginBottom: 10
     },
     inputStyle: {
         flex: 1,
@@ -38,4 +37,4 @@ const styles = StyleSheet.create({
     // }
 })
 
-export default SearchBar1
+export default SearchBar

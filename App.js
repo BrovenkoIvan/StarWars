@@ -13,7 +13,7 @@ const navigator = createBottomTabNavigator({
     Resident: ResidentsScreen,
   }),
   Favorite: createStackNavigator({
-    Favorite:FavoriteListScreen,
+    Favorite: FavoriteListScreen,
     Resident: ResidentsScreen,
   }),
   
@@ -29,12 +29,8 @@ const navigator = createBottomTabNavigator({
         },
       }
     }
-  
   }
 }
-
 )
-
-
 
 export default createAppContainer(navigator)
