@@ -24,8 +24,9 @@ const navigator = createBottomTabNavigator({
       tabBarOptions: {
         activeTintColor: 'black',
         labelStyle: {
-          fontSize: 20,
+          fontSize: 22,
           fontWeight: 'bold',
+          paddingBottom: 10
         },
       }
     }
