@@ -9,10 +9,11 @@ import {
 } from 'react-native';
 import SearchBar from '../components/SearchBar';
 import usePlanets from '../hooks/usePlanets';
+import {AppLoader} from '../components/AppLoader';
 
 const PlanetsListScreen = ({navigation}) => {
   const [term, setTerm] = useState('');
-  const [searchAPI, planet, errorMessage] = usePlanets();
+  const [searchAPI, planet, errorMessage, loader] = usePlanets();
   const [filteredPlanets, setFilteredPlanets] = useState([]);
 
   useEffect(() => {
@@ -25,6 +26,7 @@ const PlanetsListScreen = ({navigation}) => {
   return (
     <SafeAreaView style={{flex: 1}}>
       <StatusBar barStyle="light-content" />
+
       <SearchBar term={term} onTermChange={setTerm} />
       {errorMessage ? <Text>{errorMessage}</Text> : null}
       <FlatList
@@ -45,6 +47,7 @@ const PlanetsListScreen = ({navigation}) => {
           );
         }}
       />
+      {loader ? <AppLoader /> : []}
     </SafeAreaView>
   );
 };
@@ -58,14 +61,14 @@ PlanetsListScreen.navigationOptions = () => {
     headerTitleStyle: {
       fontWeight: 'bold',
       fontSize: 28,
-      color: 'white',
+      color: '#8000FF',
       fontFamily: 'AvenirNext-DemiBold',
     },
   };
 };
 const styles = StyleSheet.create({
   listStyle: {
-    fontSize: 30,
+    fontSize: 25,
     paddingLeft: 10,
     paddingTop: 10,
   },

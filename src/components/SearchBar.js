@@ -29,12 +29,7 @@ const styles = StyleSheet.create({
         flex: 1,
         fontSize: 18,
 
-    },
-    // iconStyle: {
-    //     fontSize: 35,
-    //     alignSelf: 'center',
-    //     marginHorizontal: 15
-    // }
+    }
 })
 
 export default SearchBar

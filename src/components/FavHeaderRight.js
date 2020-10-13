@@ -7,12 +7,14 @@ const starContentTrue = <Icon name="ios-star" size={30} color="gold" />;
 const starContentFalse = (
   <Icon name="ios-star-outline" size={30} color="gold" />
 );
+
 const FavHeaderRight = ({navigation}) => {
   const [isFav, setFav] = useState(false);
 
+  const residentData = navigation.getParam('data');
+
   useEffect(() => {
     (async () => {
-      const residentData = navigation.getParam('data');
       const resList = await AsyncStorage.getItem('resList');
       const parsedResList = resList ? JSON.parse(resList) : [];
       const isAdded = parsedResList.some(
@@ -21,17 +23,14 @@ const FavHeaderRight = ({navigation}) => {
       setFav(isAdded);
     })();
   }, []);
+
   const setValue = async () => {
     try {
-      const residentData = navigation.getParam('data');
       const resList = await AsyncStorage.getItem('resList');
       const parsedResList = resList ? JSON.parse(resList) : [];
       const isAdded = parsedResList.some(
         item => item.name === residentData.name,
       );
-      console.log('result', isAdded);
-      // console.log('deleteResult',deleteResult)
-      console.log('parsedResList', parsedResList);
       if (isAdded) {
         const newResList = parsedResList.filter(
           item => item.name !== residentData.name,
@@ -49,7 +48,9 @@ const FavHeaderRight = ({navigation}) => {
   };
   return (
     <TouchableOpacity onPress={setValue}>
-      <View>{isFav ? starContentTrue : starContentFalse}</View>
+      <View style={{paddingRight: 10}}>
+        {isFav ? starContentTrue : starContentFalse}
+      </View>
     </TouchableOpacity>
   );
 };
